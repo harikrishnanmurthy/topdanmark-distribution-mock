@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="ccf5fed3-3de0-4b32-a4ab-3af173012cca" activeEnvironment="Default" name="Distribution Service" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="115c24bf-b9c4-4f68-a148-c4313361b17d" wsaVersion="NONE" name="DocumentDistributionSOAP" type="wsdl" bindingName="{http://local.topdanmark.dk/DocDistribution/}DocumentDistributionSOAP" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/1564770/Downloads/topdanmark-master%20(1)/topdanmark-master/distribution.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\1564770\Downloads\topdanmark-master%20(1)\topdanmark-master\distribution.wsdl"><con:part><con:url>file:\C:\Users\1564770\Downloads\topdanmark-master%20(1)\topdanmark-master\distribution.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="DocDistribution" targetNamespace="http://local.topdanmark.dk/DocDistribution/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://local.topdanmark.dk/DocDistribution/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://local.topdanmark.dk/DocDistribution/">
+      <xs:element name="distribution_request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:int" name="customerId"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="street_1"/>
+            <xs:element type="xs:string" name="street_2"/>
+            <xs:element type="xs:int" name="zipcode"/>
+            a
+            <xs:element type="xs:string" name="city"/>
+            <xs:element type="xs:string" name="country"/>
+            <xs:element type="xs:int" name="policynumber"/>
+            <xs:element type="xs:string" name="policytype"/>
+            <xs:element type="xs:string" name="price"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="distribution_report">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element type="xs:int" name="status"/>
+            <xs:element type="xs:string" name="message"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Request">
+    <wsdl:part element="tns:distribution_request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="Response">
+    <wsdl:part element="tns:distribution_report" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="DocumentDistribution">
+    <wsdl:operation name="sendDocument">
+      <wsdl:input message="tns:Request"/>
+      <wsdl:output message="tns:Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentDistributionSOAP" type="tns:DocumentDistribution">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sendDocument">
+      <soap:operation soapAction="http://local.topdanmark.dk/DocDistribution/distribute"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentDistribution">
+    <wsdl:port binding="tns:DocumentDistributionSOAP" name="DocumentDistributionSOAP">
+      <soap:address location="http://local.topdanmark.dk/distribute"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://MYNPF0QA671:8088/mockDocumentDistributionSOAP</con:endpoint><con:endpoint>http://local.topdanmark.dk/distribute</con:endpoint></con:endpoints><con:operation id="05339a36-1b47-4810-a32f-16ee11411a69" isOneWay="false" action="http://local.topdanmark.dk/DocDistribution/distribute" name="sendDocument" bindingOperationName="sendDocument" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b8168854-1193-4d54-82f5-e59b7e6175cd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockDocumentDistributionSOAP</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://local.topdanmark.dk/DocDistribution/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <doc:distribution_request>\r
+         <customerId>123123123</customerId>\r
+         <name>John Doe</name>\r
+         <street_1>Main Street</street_1>\r
+         <street_2></street_2>\r
+         <zipcode>37</zipcode>\r
+         <city>Copenhagen</city>\r
+         <country>Denmark</country>\r
+         <policynumber>456456456</policynumber>\r
+         <policytype>Car</policytype>\r
+         <price>5000</price>\r
+      </doc:distribution_request>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://local.topdanmark.dk/DocDistribution/distribute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="f03ecbae-1769-4db3-8ab1-c5d22e45ac47" port="8088" path="/mockDocumentDistributionSOAP" host="MYNPF0QA671" name="DocumentDistributionSOAP MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="sendDocument" id="2a987d2a-a04d-475f-8041-465a8c3764e5" interface="DocumentDistributionSOAP" operation="sendDocument"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="1546988e-4a03-46e0-bc40-1d933fe5d7c4" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://local.topdanmark.dk/DocDistribution/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:distribution_report>
+         <status>0</status>
+         <message>OK</message>
+      </doc:distribution_report>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://local.topdanmark.dk/DocDistribution/distribute"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
